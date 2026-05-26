@@ -23,28 +23,68 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     scrollTriggerInstances = [];
 
-    // About-hero entrance: stagger header h1s, bio paragraph, and tag in as the section scrolls into view
+    // About-hero entrance: headers + tag fade up, then bio paragraph reveals word-by-word
     const aboutHero = document.querySelector(".about-hero");
     if (aboutHero) {
-      const aboutHeroTargets = aboutHero.querySelectorAll(
-        ".about-hero-header h1, .about-hero-bio p"
-      );
-      if (aboutHeroTargets.length > 0) {
-        gsap.set(aboutHeroTargets, { opacity: 0, y: 60 });
-        const aboutHeroAnim = gsap.to(aboutHeroTargets, {
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          stagger: 0.12,
-          scrollTrigger: {
-            trigger: ".about-hero",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
+      const bioPara = aboutHero.querySelector(".about-hero-bio p.ss");
+      // Split the bio paragraph into word spans once (idempotent across resize)
+      if (bioPara && !bioPara.dataset.split) {
+        const text = bioPara.textContent;
+        bioPara.textContent = "";
+        text.split(/(\s+)/).forEach((w) => {
+          if (/^\s+$/.test(w)) {
+            bioPara.appendChild(document.createTextNode(w));
+          } else if (w.length) {
+            const span = document.createElement("span");
+            span.className = "about-bio-word";
+            span.style.display = "inline-block";
+            span.style.willChange = "transform, opacity";
+            span.textContent = w;
+            bioPara.appendChild(span);
+          }
         });
-        scrollTriggerInstances.push(aboutHeroAnim.scrollTrigger);
+        bioPara.dataset.split = "1";
       }
+
+      const headerTargets = aboutHero.querySelectorAll(
+        ".about-hero-header h1, .about-hero-bio p.mn"
+      );
+      const bioWords = aboutHero.querySelectorAll(".about-bio-word");
+
+      gsap.set(headerTargets, { opacity: 0, y: 60 });
+      gsap.set(bioWords, { opacity: 0, y: 20 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".about-hero",
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
+
+      tl.to(headerTargets, {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        ease: "power3.out",
+        stagger: 0.12,
+      });
+
+      if (bioWords.length > 0) {
+        tl.to(
+          bioWords,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power2.out",
+            stagger: 0.035,
+          },
+          "-=0.4"
+        );
+      }
+
+      if (tl.scrollTrigger) scrollTriggerInstances.push(tl.scrollTrigger);
     }
 
     // Stats items animation (if stats elements exist)
