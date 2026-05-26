@@ -56,6 +56,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Kill existing ScrollTrigger instance to prevent duplicates
     if (scrollTriggerInstance) {
       scrollTriggerInstance.kill();
+      scrollTriggerInstance = null;
+    }
+
+    // On mobile, skip the rotate/scale/translate scroll animation and
+    // show the hero image in its final resting state immediately.
+    if (window.innerWidth <= 1000) {
+      gsap.set(".hero-img", { y: 0, scale: 1, rotation: 0 });
+      return;
     }
 
     // Create new ScrollTrigger instance

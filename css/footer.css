@@ -124,8 +124,7 @@ footer {
       flex-direction: column;
       margin-bottom: 2em;
     }
-  
-    footer .footer-row .footer-col:nth-child(2),
+
     footer .footer-row .footer-col:nth-child(4) {
       display: none;
     }
