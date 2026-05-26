@@ -189,4 +189,20 @@ nav {
       justify-content: center;
     }
   }
-  
+
+  @media (max-width: 600px) {
+    nav { padding: 1em; }
+
+    nav .logo,
+    nav .menu-toggle-btn,
+    nav .theme-toggle-btn {
+      padding: 0.55em 0.6em;
+      border-radius: 0.35em;
+    }
+
+    .nav-overlay .nav-items { gap: 0.5em; }
+    .nav-overlay .nav-items .nav-item p { font-size: 1.25rem; }
+
+    .nav-overlay .nav-footer { padding: 1.5em 1em; gap: 1em; }
+    .nav-overlay .nav-footer .nav-footer-item p { font-size: 0.7rem; }
+  }

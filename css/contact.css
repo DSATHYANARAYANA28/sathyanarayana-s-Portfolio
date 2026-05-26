@@ -381,23 +381,62 @@
     padding: 1em;
     gap: 1.5em;
   }
-  
+
   .contact-form-container {
     padding: 1.5em;
     border-radius: 1em;
     max-width: 100%;
   }
-  
+
   .form-row {
     grid-template-columns: 1fr;
     gap: 0.75em;
   }
-  
+
   .contact-card-header-main h1 {
     font-size: clamp(1.75rem, 8vw, 2rem);
   }
-  
+
   .form-header h2 {
     font-size: clamp(1.25rem, 6vw, 1.5rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .contact {
+    padding: 5em 0.75em 2em 0.75em;
+    gap: 1em;
+  }
+
+  .contact-form-container {
+    padding: 1.25em;
+    border-radius: 0.85em;
+    box-shadow: 4px 4px 0px var(--fg);
+  }
+
+  .contact-card-header-main { gap: 0.75em; }
+  .contact-card-header-main p { font-size: 0.9rem; }
+
+  .contact-info { margin-top: 1em; gap: 0.75em; }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 0.85em 1em;
+    font-size: 0.95rem;
+    border-radius: 0.6em;
+  }
+
+  .form-group textarea { min-height: 90px; }
+
+  .submit-btn {
+    padding: 0.9em 1.5em;
+    font-size: 0.75rem;
+    box-shadow: 3px 3px 0px var(--fg);
+  }
+
+  .contact .trail-img {
+    width: 80px;
+    height: 80px;
   }
 }
