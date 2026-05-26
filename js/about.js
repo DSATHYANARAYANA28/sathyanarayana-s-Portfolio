@@ -23,6 +23,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     scrollTriggerInstances = [];
 
+    // About-hero entrance: stagger header h1s, bio paragraph, and tag in as the section scrolls into view
+    const aboutHero = document.querySelector(".about-hero");
+    if (aboutHero) {
+      const aboutHeroTargets = aboutHero.querySelectorAll(
+        ".about-hero-header h1, .about-hero-bio p"
+      );
+      if (aboutHeroTargets.length > 0) {
+        gsap.set(aboutHeroTargets, { opacity: 0, y: 60 });
+        const aboutHeroAnim = gsap.to(aboutHeroTargets, {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          stagger: 0.12,
+          scrollTrigger: {
+            trigger: ".about-hero",
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        });
+        scrollTriggerInstances.push(aboutHeroAnim.scrollTrigger);
+      }
+    }
+
     // Stats items animation (if stats elements exist)
     const statsElements = document.querySelectorAll(".stats-item-1, .stats-item-2, .stats-item-3");
     if (statsElements.length > 0) {
