@@ -141,16 +141,37 @@ footer {
     }
 
     footer .footer-container {
-      padding: 2em 1.25em;
+      padding: 2.5em 1.25em 2em 1.25em;
       border-radius: 1.25em;
       gap: 2em;
     }
 
-    footer .footer-header h1 { font-size: 2rem; }
+    footer .footer-header h1 { font-size: 2.25rem; }
 
     footer .footer-row {
-      gap: 1.5em;
-      margin-bottom: 1.5em;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 1em;
+      margin-bottom: 1em;
+    }
+
+    footer .footer-col {
+      flex: 1;
+      align-items: flex-start;
+      gap: 0.65em;
+    }
+
+    footer .footer-col p:first-child {
+      font-family: "supply-mono";
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.5;
+    }
+
+    footer .footer-col p:not(:first-child) {
+      opacity: 1;
+      font-size: 1rem;
     }
 
     footer .footer-symbols { padding: 1em; }

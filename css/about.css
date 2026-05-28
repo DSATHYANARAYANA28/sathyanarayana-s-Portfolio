@@ -185,6 +185,10 @@
 @media (max-width: 1000px) {
   .about-hero {
     padding: 8em 2em 4em 2em;
+    height: auto;
+    min-height: 100svh;
+    justify-content: flex-start;
+    gap: 2em;
   }
 
   .about-hero .about-hero-header h1 {
@@ -196,14 +200,17 @@
   }
 
   .about-hero .about-hero-portrait {
-    width: 25%;
-    top: 50%;
-    transform: translate(-50%, -50%) rotate(0deg);
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: rotate(0deg);
+    width: 35%;
+    margin: 0 auto;
   }
 
   .about-hero .about-hero-portrait img {
-    position: absolute;
-    height: 110%;
+    position: relative;
+    height: 100%;
   }
 
   .about-copy .about-copy-content {
@@ -268,16 +275,31 @@
     position: relative;
     top: auto;
     left: auto;
-    transform: rotate(0deg);
-    width: 55%;
-    margin: 0 auto;
+    transform: rotate(-3deg);
+    width: 65%;
+    margin: 1em auto 0 auto;
     border-width: 0.2em;
     outline-width: 0.2em;
+    box-shadow: 6px 6px 0 0 var(--fg);
   }
 
   .about-hero .about-hero-portrait img {
     position: relative;
     height: 100%;
+  }
+
+  .about-hero .about-hero-portrait::after {
+    content: "D / 2026";
+    position: absolute;
+    bottom: -1.75em;
+    left: 50%;
+    transform: translateX(-50%) rotate(3deg);
+    font-family: "supply-mono";
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--fg);
+    opacity: 0.6;
+    white-space: nowrap;
   }
 
   .about-copy { padding: 4em 1em; }
