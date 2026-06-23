@@ -1,0 +1,532 @@
+/* ============================================
+   PROFILE SECTION (Trainer / Work toggle)
+   ============================================ */
+.profile-section {
+  position: relative;
+  width: 100vw;
+  padding: 8em 2em;
+  background-color: var(--bg);
+  color: var(--fg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.5em;
+  overflow: hidden;
+}
+
+/* --- toggle switch --- */
+.profile-switch {
+  position: relative;
+  display: flex;
+  align-self: center;
+  padding: 0.3em;
+  border: 0.2em solid var(--fg);
+  border-radius: 2em;
+  background-color: var(--bg2);
+}
+
+.profile-switch .switch-indicator {
+  position: absolute;
+  top: 0.3em;
+  bottom: 0.3em;
+  left: 0.3em;
+  width: calc(50% - 0.3em);
+  background-color: var(--accent1);
+  border-radius: 2em;
+  transition: left 0.45s cubic-bezier(0.7, 0, 0.2, 1);
+  z-index: 0;
+}
+
+.profile-switch[data-active="work"] .switch-indicator {
+  left: 50%;
+}
+
+.profile-switch .switch-btn {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--fg);
+  font-family: "supply-mono";
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  padding: 0.95em 1.75em 0.8em 1.75em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.35s ease;
+}
+
+.profile-switch .switch-btn.active {
+  color: var(--bg);
+}
+
+/* --- panels --- */
+.profile-panels {
+  position: relative;
+  width: 100%;
+}
+
+.profile-panel {
+  display: none;
+}
+
+.profile-panel.active {
+  display: block;
+}
+
+.profile-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4em;
+}
+
+/* ============================================
+   SHARED COMPONENTS
+   ============================================ */
+/* header */
+.profile-body .profile-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+  border-bottom: 0.2em solid var(--fg);
+  padding-bottom: 1.5em;
+}
+
+.profile-body .profile-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  color: var(--accent1);
+  flex-wrap: wrap;
+}
+
+.profile-body .profile-header h2 {
+  font-size: 5rem;
+}
+
+.profile-body .profile-header h2 span {
+  color: var(--accent1);
+  font-style: italic;
+}
+
+/* summary + portrait */
+.profile-body .profile-summary {
+  display: flex;
+  gap: 3em;
+  align-items: stretch;
+}
+
+.profile-body .profile-portrait {
+  flex: 1;
+  position: relative;
+  aspect-ratio: 5/6;
+  border-radius: 1em;
+  overflow: hidden;
+  border: 0.25em solid var(--accent3);
+  outline: 0.25em solid var(--accent1);
+  max-width: 320px;
+}
+
+.profile-body .profile-portrait::after {
+  content: "SATHYANARAYANA · D";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.75em 1em;
+  font-family: "supply-mono";
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+}
+
+.profile-body .profile-summary-copy {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5em;
+  background-color: var(--bg2);
+  border: 0.25em solid var(--fg);
+  border-radius: 1em;
+  padding: 2.5em;
+}
+
+.profile-body .profile-summary-copy .label {
+  color: var(--accent1);
+}
+
+.profile-body .profile-summary-copy p.ss {
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+/* meta grid + cards */
+.profile-body .meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em;
+}
+
+.profile-body .meta-grid-skills {
+  grid-template-columns: 1fr 1.5fr;
+}
+
+.profile-body .meta-card {
+  border: 0.25em solid var(--fg);
+  border-radius: 1em;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25em;
+}
+
+.profile-body .meta-card-wide {
+  grid-column: 1 / -1;
+}
+
+.profile-body .meta-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.15em dashed var(--fg);
+  padding-bottom: 0.75em;
+}
+
+.profile-body .meta-card-header h3 {
+  font-size: 1.75rem;
+}
+
+.profile-body .meta-count {
+  color: var(--accent1);
+}
+
+/* plain info block (education / internship) */
+.profile-body .info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+}
+
+.profile-body .info-block .info-title {
+  font-family: "formula-narrow";
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.profile-body .info-block .info-sub {
+  font-family: "supply-mono";
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent1);
+}
+
+.profile-body .info-block .info-meta {
+  font-family: "supply-mono";
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.profile-body .info-block p {
+  font-size: 1.05rem;
+  margin-top: 0.25em;
+}
+
+/* divider between stacked roles in one card */
+.profile-body .info-block + .info-block {
+  border-top: 0.15em dashed var(--fg);
+  padding-top: 1.25em;
+}
+
+/* skills pills */
+.profile-body .skills-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75em;
+}
+
+.profile-body .pill {
+  font-family: "supply-mono";
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.7em 1em 0.55em 1em;
+  border: 0.15em solid var(--fg);
+  border-radius: 2em;
+  background-color: var(--bg);
+  transition: background-color 0.25s ease, color 0.25s ease,
+    transform 0.25s ease;
+  cursor: default;
+}
+
+.profile-body .pill:hover {
+  background-color: var(--accent1);
+  color: var(--bg);
+  transform: translateY(-3px);
+}
+
+/* achievements / certifications list */
+.profile-body .achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.profile-body .achievement {
+  display: flex;
+  align-items: flex-start;
+  gap: 1em;
+  padding: 1em 1.25em;
+  border: 0.15em solid var(--fg);
+  border-radius: 0.75em;
+  background-color: var(--bg);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.profile-body .achievement:hover {
+  transform: translateX(6px);
+  border-color: var(--accent1);
+}
+
+.profile-body .achievement .achievement-mark {
+  font-family: "supply-mono";
+  font-size: 0.875rem;
+  color: var(--accent1);
+  line-height: 1.4;
+}
+
+.profile-body .achievement .achievement-body p {
+  font-size: 1.05rem;
+}
+
+.profile-body .achievement .achievement-body .ach-sub {
+  font-family: "supply-mono";
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.65;
+  margin-top: 0.2em;
+}
+
+.profile-body .cert-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-top: 0.45em;
+  font-family: "supply-mono";
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent1);
+  border-bottom: 0.1em solid var(--accent1);
+  padding-bottom: 0.1em;
+  transition: opacity 0.2s ease;
+}
+
+.profile-body .cert-link:hover {
+  opacity: 0.65;
+}
+
+/* entry group (corporate / projects) */
+.profile-body .entry-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.profile-body .entry-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+
+.profile-body .entry-heading h2 {
+  font-size: 3.5rem;
+}
+
+.profile-body .entry-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-body .entry-item {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: 2em;
+  padding: 2em 0.5em;
+  border-top: 0.15em solid var(--fg);
+  align-items: start;
+  transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+.profile-body .entry-item:last-child {
+  border-bottom: 0.15em solid var(--fg);
+}
+
+.profile-body .entry-item:hover {
+  background-color: var(--bg2);
+  padding-left: 1.25em;
+}
+
+.profile-body .entry-index {
+  font-family: "supply-mono";
+  font-size: 1.5rem;
+  color: var(--accent1);
+  font-weight: 600;
+}
+
+.profile-body .entry-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+}
+
+.profile-body .entry-body h3 {
+  font-size: 2.25rem;
+  font-style: italic;
+}
+
+.profile-body .entry-body .entry-sub {
+  font-family: "supply-mono";
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent1);
+}
+
+.profile-body .entry-body .entry-tag {
+  width: max-content;
+  font-family: "supply-mono";
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--bg);
+  background-color: var(--fg);
+  padding: 0.5em 0.75em 0.35em 0.75em;
+  border-radius: 0.4em;
+}
+
+.profile-body .entry-body p {
+  max-width: 60ch;
+  line-height: 1.25;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1000px) {
+  .profile-section {
+    padding: 6em 2em;
+    gap: 3em;
+  }
+
+  .profile-body {
+    gap: 3em;
+  }
+
+  .profile-body .profile-header h2 {
+    font-size: 3rem;
+  }
+
+  .profile-body .profile-summary {
+    flex-direction: column;
+    gap: 2em;
+  }
+
+  .profile-body .profile-portrait {
+    max-width: 240px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .profile-body .profile-summary-copy p.ss {
+    font-size: 1.25rem;
+  }
+
+  .profile-body .meta-grid,
+  .profile-body .meta-grid-skills {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-body .entry-heading h2 {
+    font-size: 2.5rem;
+  }
+
+  .profile-body .entry-body h3 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-section {
+    padding: 4em 1em;
+    gap: 2.5em;
+  }
+
+  .profile-switch .switch-btn {
+    font-size: 0.7rem;
+    padding: 0.9em 1.1em 0.75em 1.1em;
+  }
+
+  .profile-body {
+    gap: 2.5em;
+  }
+
+  .profile-body .profile-header {
+    padding-bottom: 1em;
+  }
+
+  .profile-body .profile-header h2 {
+    font-size: 2rem;
+  }
+
+  .profile-body .profile-summary-copy {
+    padding: 1.5em;
+  }
+
+  .profile-body .profile-summary-copy p.ss {
+    font-size: 1.05rem;
+  }
+
+  .profile-body .meta-card {
+    padding: 1.5em;
+  }
+
+  .profile-body .meta-card-header h3 {
+    font-size: 1.35rem;
+  }
+
+  .profile-body .entry-heading h2 {
+    font-size: 1.85rem;
+  }
+
+  .profile-body .entry-item {
+    grid-template-columns: 2.5rem 1fr;
+    gap: 1em;
+    padding: 1.5em 0.25em;
+  }
+
+  .profile-body .entry-item:hover {
+    padding-left: 0.5em;
+  }
+
+  .profile-body .entry-index {
+    font-size: 1.1rem;
+  }
+
+  .profile-body .entry-body h3 {
+    font-size: 1.4rem;
+  }
+
+  .profile-body .entry-body p {
+    font-size: 0.95rem;
+  }
+}
