@@ -471,9 +471,15 @@
     gap: 2.5em;
   }
 
+  /* full-width segmented control with larger tap targets */
+  .profile-switch {
+    width: 100%;
+    max-width: 360px;
+  }
+
   .profile-switch .switch-btn {
-    font-size: 0.7rem;
-    padding: 0.9em 1.1em 0.75em 1.1em;
+    font-size: 0.72rem;
+    padding: 1.15em 0.5em 1em 0.5em;
   }
 
   .profile-body {
@@ -486,6 +492,10 @@
 
   .profile-body .profile-header h2 {
     font-size: 2rem;
+  }
+
+  .profile-body .profile-portrait {
+    max-width: 200px;
   }
 
   .profile-body .profile-summary-copy {
